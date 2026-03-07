@@ -4,7 +4,15 @@ import Image from 'next/image';
 import { useState, useEffect } from 'react';
 
 import { BackgroundGradientAnimation } from '@/components/ui/background-gradient-animation';
-import { BrainIcon, EnergyIcon, HappyIcon, HeartCheckIcon, HealthIcon, SleepingIcon } from "hugeicons-react";
+import { HugeiconsIcon } from '@hugeicons/react';
+import {
+  BrainIcon,
+  EnergyIcon,
+  HappyIcon,
+  HeartCheckIcon,
+  HealthIcon,
+  SleepingIcon,
+} from '@hugeicons/core-free-icons';
 
 export default function Home() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
@@ -175,7 +183,7 @@ export default function Home() {
 
                 <div className="relative z-10">
                   <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-[#f89b3f]/10 to-[#ff6e40]/10">
-                    <benefit.icon size={32} color="#fef5ed" />
+                    <HugeiconsIcon icon={benefit.icon} size={32} primaryColor="#fef5ed" />
                   </div>
 
                   <h3 className="font-alegreya text-2xl font-bold text-[#fef5ed]">

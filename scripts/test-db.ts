@@ -7,7 +7,11 @@ import { waitlist } from '../db/schema';
 async function main() {
     try {
         console.log('Testing connection...');
-        const { db } = await import('../lib/db');
+        const { db, hasDatabase } = await import('../lib/db');
+        if (!hasDatabase || !db) {
+            console.log('No database configured (DATABASE_URL not set).');
+            process.exit(0);
+        }
         const result = await db.select().from(waitlist).limit(1);
         console.log('Connection successful:', result);
         process.exit(0);
