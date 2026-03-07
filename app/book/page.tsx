@@ -21,6 +21,11 @@ const IMAGE_FALLBACK = '/hero-bg.jpeg';
 const ANUMI_WORDS = ['Anumi', 'अनूमी', 'ಅನೂಮಿ', 'அனூமி', 'انومی'];
 const ANUMI_ROTATE_MS = 2800;
 
+const SECTION2_SCIENCE_EXPLANATION =
+  '"These methods have helped people feel calmer, more present, and better equipped to manage everyday stress."\n\n— Dr. Meera Srinivasan, Neuroscientist\nBangalore Institute of Neurohealth';
+const SECTION2_SCIENCE_RESEARCH_TITLE = '';
+const SECTION2_SCIENCE_RESEARCH_URL = '';
+
 function SessionCard({ session }: { session: Session }) {
   return (
     <div className="flex flex-col">
@@ -150,7 +155,7 @@ export default function BookPage() {
               className="mt-6 text-xl leading-relaxed md:text-2xl"
               style={{ color: fontColor }}
             >
-              We&apos;re running free live sessions this week. Pick a time that works for you:
+              We&apos;re running free live sessions this week for a limited time. Pick a time that works for you:
             </p>
 
             <div className="mt-12 grid grid-cols-1 gap-6 sm:gap-8 md:grid-cols-2 lg:grid-cols-3">
@@ -206,9 +211,18 @@ export default function BookPage() {
               <h2 className="text-2xl font-medium tracking-tight md:text-4xl" style={{ color: fontColor }}>
                 If you live in the city, you know the feeling: always on, always stressed, running on empty.
               </h2>
-              <p className="mt-4 max-w-2xl text-lg leading-relaxed opacity-90 md:text-xl" style={{ color: fontColor }}>
-                We built Anumi because that&apos;s not sustainable. Our sessions teach you nervous system regulation—science-backed practices that help your body actually settle. Not just mentally understanding stress, but physically releasing it.
-              </p>
+              <div className="mt-4 max-w-2xl text-lg leading-relaxed opacity-90 md:text-xl" style={{ color: fontColor }}>
+                We built Anumi because that&apos;s not sustainable. Our sessions teach you nervous system regulation,{' '}
+                <ScienceInfoTooltip
+                  trigger="text"
+                  explanation={SECTION2_SCIENCE_EXPLANATION}
+                  researchTitle={SECTION2_SCIENCE_RESEARCH_TITLE}
+                  researchUrl={SECTION2_SCIENCE_RESEARCH_URL}
+                >
+                  science-backed
+                </ScienceInfoTooltip>{' '}
+                practices that help your body actually settle. Not just mentally understanding stress, but physically releasing it.
+              </div>
               <p className="mt-4 max-w-2xl text-base leading-relaxed opacity-90 md:text-lg" style={{ color: fontColor }}>
                 Why Anumi? Because you shouldn&apos;t need a guru or an expensive clinic to learn how to calm down. You just need the right tools and a space to practice them.
               </p>
