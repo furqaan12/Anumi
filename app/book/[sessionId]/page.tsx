@@ -29,6 +29,7 @@ export default function BookingFormPage() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
+  const [addToCommunityWhatsapp, setAddToCommunityWhatsapp] = useState(false);
   const [errors, setErrors] = useState<{ name?: string; email?: string; phone?: string }>({});
   const [touched, setTouched] = useState<{ name?: boolean; email?: boolean; phone?: boolean }>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -191,6 +192,18 @@ export default function BookingFormPage() {
                 </p>
               )}
             </div>
+
+            <label className="mt-2 flex cursor-pointer items-center gap-3">
+              <input
+                type="checkbox"
+                checked={addToCommunityWhatsapp}
+                onChange={(e) => setAddToCommunityWhatsapp(e.target.checked)}
+                className="h-4 w-4 rounded border-white/20 bg-white/10 text-[#ff6e40] focus:ring-[#ff6e40]"
+              />
+              <span className="text-sm opacity-90" style={{ color: fontColor }}>
+                Add me to the Anumi community WhatsApp channel
+              </span>
+            </label>
 
             <button
               type="submit"

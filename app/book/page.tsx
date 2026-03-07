@@ -14,9 +14,12 @@ const mabryPro = localFont({
 
 const fontColor = '#F9EAD1';
 const noiseBg = `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`;
-const WHY_ANUMI_IMAGE = '/GIRRLL.jpg';
+const WHY_ANUMI_IMAGE = '/GIRRLL.jpg?v=2';
 const COMMUNITY_IMAGE = '/desert%20hike%20aesthetic.jpg';
 const IMAGE_FALLBACK = '/hero-bg.jpeg';
+
+const ANUMI_WORDS = ['Anumi', 'अनूमी', 'ಅನೂಮಿ', 'அனூமி', 'انومی'];
+const ANUMI_ROTATE_MS = 2800;
 
 function SessionCard({ session }: { session: Session }) {
   return (
@@ -72,8 +75,16 @@ export default function BookPage() {
   type FloatingButton = 'why-anumi' | 'community' | null;
   const [floatingButton, setFloatingButton] = useState<FloatingButton>('why-anumi');
   const [whyAnumiImageError, setWhyAnumiImageError] = useState(false);
+  const [anumiWordIndex, setAnumiWordIndex] = useState(0);
   const whyAnumiRef = useRef<HTMLElement>(null);
   const communityRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const t = setInterval(() => {
+      setAnumiWordIndex((i) => (i + 1) % ANUMI_WORDS.length);
+    }, ANUMI_ROTATE_MS);
+    return () => clearInterval(t);
+  }, []);
 
   useEffect(() => {
     const whySection = whyAnumiRef.current;
@@ -130,7 +141,10 @@ export default function BookPage() {
               className="text-2xl leading-[1.1] tracking-tight md:text-3xl lg:text-5xl xl:text-6xl"
               style={{ color: fontColor }}
             >
-              Welcome to Anumi
+              Welcome to{' '}
+              <span key={anumiWordIndex} className="inline-block min-w-[1.2em] anumi-word-fade">
+                {ANUMI_WORDS[anumiWordIndex]}
+              </span>
             </h1>
             <p
               className="mt-6 text-xl leading-relaxed md:text-2xl"

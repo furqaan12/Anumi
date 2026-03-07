@@ -125,7 +125,7 @@ export default function ConfirmationPage() {
           </p>
 
           <Link
-            href="/"
+            href="/book"
             className="inline-block text-sm opacity-80 hover:opacity-100"
             style={{ color: fontColor }}
           >
