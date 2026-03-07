@@ -472,3 +472,17 @@ input:-webkit-autofill:active {
 .science-tooltip-fade {
   animation: scienceTooltipFade 180ms ease-out forwards;
 }
+
+/* Welcome to Anumi – rotating word subtle fade */
+@keyframes anumiWordFade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.anumi-word-fade {
+  animation: anumiWordFade 0.5s ease-out forwards;
+}
