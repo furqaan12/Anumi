@@ -33,6 +33,8 @@ function SessionCard({ session }: { session: Session }) {
         className="group relative rounded-lg border border-white/10 bg-white/5 p-6 transition-all duration-300 hover:bg-white/[0.08]"
         style={{ fontFamily: 'var(--font-mabry-pro)' }}
       >
+        <div className="absolute inset-0 rounded-lg bg-black/10 pointer-events-none" aria-hidden />
+        <div className="relative z-10">
         {session.scienceExplanation && session.scienceResearchTitle && session.scienceResearchUrl && (
           <div className="absolute right-4 top-4">
             <ScienceInfoTooltip
@@ -61,9 +63,10 @@ function SessionCard({ session }: { session: Session }) {
         >
           Book This Session
         </Link>
+        </div>
       </div>
       {session.spotsRemaining != null && session.spotsTotal != null && (
-        <p className="mt-2 text-center text-xs italic opacity-80" style={{ color: fontColor, fontFamily: 'var(--font-mabry-pro)' }}>
+        <p className="mt-2 text-center text-xs italic opacity-70" style={{ color: fontColor, fontFamily: 'var(--font-mabry-pro)' }}>
           {session.spotsRemaining} of {session.spotsTotal} spots remaining
         </p>
       )}
@@ -123,9 +126,10 @@ export default function BookPage() {
 
   return (
     <div className={`relative min-h-[100dvh] w-full overflow-x-hidden bg-black ${mabryPro.className}`}>
+      {/* Section 1 background */}
       <div
-        className="pointer-events-none absolute inset-0 z-[1] mix-blend-overlay opacity-20"
-        style={{ backgroundImage: noiseBg }}
+        className="pointer-events-none absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: 'url(/sec1.jpg)' }}
       />
 
       <div className="absolute left-0 top-8 z-20 flex w-full justify-center">
@@ -358,7 +362,7 @@ export default function BookPage() {
       {floatingButton === 'why-anumi' && (
         <a
           href="#why-anumi"
-          className="fixed bottom-6 right-6 z-20 text-sm font-medium tracking-wide opacity-80 transition-opacity duration-300 hover:opacity-100"
+          className="fixed bottom-6 right-6 z-20 text-sm font-medium tracking-wide opacity-70 transition-opacity duration-300 hover:opacity-100"
           style={{ color: fontColor, fontFamily: 'var(--font-mabry-pro)' }}
         >
           Why Anumi? →

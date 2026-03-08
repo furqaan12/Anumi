@@ -80,16 +80,14 @@ export default function Home() {
 
   return (
     <div className={`relative w-full min-h-[100dvh] overflow-x-hidden bg-black ${mabryPro.className}`}>
-
+      {/* Background image */}
       <div
-        className="absolute inset-0 z-[1] opacity-20 pointer-events-none mix-blend-overlay"
-        style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
-        }}
+        className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat pointer-events-none"
+        style={{ backgroundImage: 'url(/wow.jpg)' }}
       />
-
+      <div className="absolute inset-0 z-[0.5] bg-black/10 pointer-events-none" aria-hidden />
       <div className="absolute top-8 left-0 w-full flex justify-center z-20">
-        <h2 className="text-2xl tracking-widest uppercase opacity-80" style={{ fontFamily: 'var(--font-booton)', color: fontColor }}>anumi</h2>
+        <h2 className="text-2xl tracking-widest uppercase opacity-70" style={{ fontFamily: 'var(--font-booton)', color: fontColor }}>anumi</h2>
       </div>
 
       <div className={`relative z-10 min-h-[100dvh] flex flex-col items-center justify-start md:justify-center pt-24 pb-12 md:py-32 px-6 transition-all duration-500 max-w-[1400px] mx-auto`}>
@@ -97,7 +95,7 @@ export default function Home() {
 
           <div className={`transition-all duration-500 w-full lg:flex-1`}>
             <h1
-              className="text-2xl leading-[1.1] tracking-tight md:text-3xl lg:text-5xl xl:text-6xl"
+              className="text-2xl leading-[1.1] tracking-tight opacity-90 md:text-3xl lg:text-5xl xl:text-6xl"
               style={{ color: fontColor }}
             >
               Where Modern India Slows Down.
@@ -106,7 +104,7 @@ export default function Home() {
 
           <div className={`transition-all duration-500 w-full lg:flex-1 lg:border-l lg:pl-12 lg:border-white/10 mt-8 lg:mt-0`}>
             <p
-              className={`text-xl leading-relaxed md:text-2xl transition-all duration-500`}
+              className={`text-xl leading-relaxed opacity-90 md:text-2xl transition-all duration-500`}
               style={{ color: fontColor }}
             >
               Anumi is a space to pause, reset, catch your breath. For people on the go, or for anyone who needs a break. We're starting with live online breathwork and meditation sessions. Science-based, built for people who want practical tools. Come join the community of chill.
@@ -130,7 +128,7 @@ export default function Home() {
               <button
                 disabled={isPending}
                 type="submit"
-                className="absolute right-1.5 top-1.5 bottom-1.5 z-20 rounded-full px-6 bg-white/10 hover:bg-white/20 border border-white/10 text-sm font-bold tracking-widest transition-all duration-300 disabled:opacity-70 disabled:cursor-not-allowed cursor-pointer flex items-center justify-center"
+                className="absolute right-1.5 top-1.5 bottom-1.5 z-20 rounded-full px-6 bg-white/10 hover:bg-white/20 border border-white/10 text-sm font-bold tracking-widest opacity-90 transition-all duration-300 disabled:opacity-70 disabled:cursor-not-allowed cursor-pointer flex items-center justify-center"
                 style={{ color: fontColor }}
               >
                 <span className="relative z-10 whitespace-nowrap">
@@ -148,10 +146,10 @@ export default function Home() {
 
           <div className="mt-14 w-full max-w-2xl mx-auto text-center min-h-[120px] flex flex-col justify-center">
             <blockquote key={testimonialIndex} className="testimonial-fade">
-              <p className="text-lg leading-relaxed opacity-90 md:text-xl" style={{ color: fontColor }}>
+              <p className="text-lg leading-relaxed opacity-80 md:text-xl" style={{ color: fontColor }}>
                 &ldquo;{TESTIMONIALS[testimonialIndex].quote}&rdquo;
               </p>
-              <footer className="mt-4 text-sm opacity-80" style={{ color: fontColor }}>
+              <footer className="mt-4 text-sm opacity-70" style={{ color: fontColor }}>
                 — {TESTIMONIALS[testimonialIndex].name}, {TESTIMONIALS[testimonialIndex].role}
               </footer>
             </blockquote>
