@@ -14,7 +14,6 @@ const mabryPro = localFont({
 });
 
 const fontColor = '#F9EAD1';
-const noiseBg = `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`;
 
 export default function ConfirmationPage() {
   const params = useParams();
@@ -45,7 +44,6 @@ export default function ConfirmationPage() {
   if (booking === null) {
     return (
       <div className={`relative min-h-[100dvh] w-full overflow-x-hidden bg-black ${mabryPro.className}`}>
-        <div className="pointer-events-none absolute inset-0 z-[1] mix-blend-overlay opacity-20" style={{ backgroundImage: noiseBg }} />
         <div className="relative z-10 mx-auto flex min-h-[100dvh] max-w-[1400px] flex-col items-center justify-center px-6 pt-24 pb-12">
           <p className="text-xl" style={{ color: fontColor }}>
             Booking not found.
@@ -64,15 +62,10 @@ export default function ConfirmationPage() {
 
   return (
     <div className={`relative min-h-[100dvh] w-full overflow-x-hidden bg-black ${mabryPro.className}`}>
-      <div
-        className="pointer-events-none absolute inset-0 z-[1] mix-blend-overlay opacity-20"
-        style={{ backgroundImage: noiseBg }}
-      />
-
       <div className="absolute left-0 top-8 z-20 flex w-full justify-center">
         <Link
           href="/"
-          className="text-2xl tracking-[0.2em] uppercase opacity-80"
+          className="text-2xl tracking-[0.2em] uppercase"
           style={{ fontFamily: 'var(--font-booton)', color: fontColor }}
         >
           anumi
@@ -89,7 +82,7 @@ export default function ConfirmationPage() {
           </h1>
 
           <div>
-            <p className="text-lg leading-relaxed opacity-90 md:text-xl" style={{ color: fontColor }}>
+            <p className="text-lg leading-relaxed md:text-xl" style={{ color: fontColor }}>
               {booking.sessionName} – {booking.sessionDay}, {booking.sessionTime} IST
               <br />
               Led by {booking.sessionPractitioner}
@@ -97,7 +90,7 @@ export default function ConfirmationPage() {
           </div>
 
           <div>
-            <p className="mb-2 text-sm font-medium opacity-80" style={{ color: fontColor }}>
+            <p className="mb-2 text-sm font-medium" style={{ color: fontColor }}>
               Here&apos;s your session link:
             </p>
             <a
@@ -120,13 +113,13 @@ export default function ConfirmationPage() {
             Add to Calendar
           </button>
 
-          <p className="text-sm leading-relaxed opacity-70" style={{ color: fontColor }}>
+          <p className="text-sm leading-relaxed" style={{ color: fontColor }}>
             We&apos;ll send this link to your email and WhatsApp as a reminder 1 hour before the session.
           </p>
 
           <Link
             href="/book"
-            className="inline-block text-sm opacity-80 hover:opacity-100"
+            className="inline-block text-sm hover:opacity-80"
             style={{ color: fontColor }}
           >
             ← Back to home
