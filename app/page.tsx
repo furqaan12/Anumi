@@ -1,11 +1,36 @@
 'use client';
 
-import { useState, useTransition } from 'react';
+import { useState, useTransition, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { joinWaitlist } from './actions/subscribe';
 import localFont from 'next/font/local';
 
 const PREFILL_EMAIL_KEY = 'anumi_prefill_email';
+
+const TESTIMONIALS = [
+  {
+    quote: 'I feel incredible. I\'m new to breathwork, but after doing this session I felt noticeably calm.',
+    name: 'Ayush Kala',
+    role: 'Product Manager',
+  },
+  {
+    quote: 'It was amazing. I loved how gradual and safe the sessions felt.',
+    name: 'Sanjana Ramesh',
+    role: 'Business Development Executive',
+  },
+  {
+    quote: 'I can vouch for these sessions. They\'ve become essential to starting my day and part of my daily routine.',
+    name: 'Anmol Kumar',
+    role: 'AI Product Engineer',
+  },
+  {
+    quote: 'I felt calm and relaxed, and it helped me navigate my busy schedule.',
+    name: 'Ebrahim Mohaseena Banu',
+    role: 'Homeowner & Entrepreneur',
+  },
+] as const;
+
+const TESTIMONIAL_ROTATE_MS = 4500;
 
 const mabryPro = localFont({
   src: '../public/fonts/MabryPro-Regular.ttf',
@@ -18,8 +43,16 @@ export default function Home() {
   const [message, setMessage] = useState('');
   const [isError, setIsError] = useState(false);
   const [isPending, startTransition] = useTransition();
+  const [testimonialIndex, setTestimonialIndex] = useState(0);
 
   const fontColor = '#F9EAD1';
+
+  useEffect(() => {
+    const t = setInterval(() => {
+      setTestimonialIndex((i) => (i + 1) % TESTIMONIALS.length);
+    }, TESTIMONIAL_ROTATE_MS);
+    return () => clearInterval(t);
+  }, []);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -112,6 +145,17 @@ export default function Home() {
               </p>
             )}
           </form>
+
+          <div className="mt-14 w-full max-w-2xl mx-auto text-center min-h-[120px] flex flex-col justify-center">
+            <blockquote key={testimonialIndex} className="testimonial-fade">
+              <p className="text-lg leading-relaxed opacity-90 md:text-xl" style={{ color: fontColor }}>
+                &ldquo;{TESTIMONIALS[testimonialIndex].quote}&rdquo;
+              </p>
+              <footer className="mt-4 text-sm opacity-80" style={{ color: fontColor }}>
+                — {TESTIMONIALS[testimonialIndex].name}, {TESTIMONIALS[testimonialIndex].role}
+              </footer>
+            </blockquote>
+          </div>
         </div>
       </div>
     </div>

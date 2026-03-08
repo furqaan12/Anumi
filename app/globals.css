@@ -486,3 +486,8 @@ input:-webkit-autofill:active {
 .anumi-word-fade {
   animation: anumiWordFade 0.5s ease-out forwards;
 }
+
+/* Home page – rotating testimonial fade */
+.testimonial-fade {
+  animation: anumiWordFade 0.6s ease-out forwards;
+}
