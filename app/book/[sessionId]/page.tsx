@@ -14,7 +14,6 @@ const mabryPro = localFont({
 
 const fontColor = '#F9EAD1';
 const PREFILL_EMAIL_KEY = 'anumi_prefill_email';
-const noiseBg = `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`;
 
 function validateEmail(email: string): boolean {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
@@ -87,7 +86,6 @@ export default function BookingFormPage() {
   if (!session) {
     return (
       <div className={`relative min-h-[100dvh] w-full overflow-x-hidden bg-black ${mabryPro.className}`}>
-        <div className="pointer-events-none absolute inset-0 z-[1] mix-blend-overlay opacity-20" style={{ backgroundImage: noiseBg }} />
         <div className="relative z-10 mx-auto flex min-h-[100dvh] max-w-[1400px] flex-col items-center justify-center px-6 pt-24 pb-12">
           <p className="text-xl text-[#F9EAD1]">Session not found.</p>
           <Link href="/book" className="mt-4 rounded-full border border-white/10 bg-white/10 px-6 py-4 text-sm font-bold tracking-widest" style={{ color: fontColor }}>
@@ -100,15 +98,10 @@ export default function BookingFormPage() {
 
   return (
     <div className={`relative min-h-[100dvh] w-full overflow-x-hidden bg-black ${mabryPro.className}`}>
-      <div
-        className="pointer-events-none absolute inset-0 z-[1] mix-blend-overlay opacity-20"
-        style={{ backgroundImage: noiseBg }}
-      />
-
       <div className="absolute left-0 top-8 z-20 flex w-full justify-center">
         <Link
           href="/"
-          className="text-2xl tracking-[0.2em] uppercase opacity-80"
+          className="text-2xl tracking-[0.2em] uppercase"
           style={{ fontFamily: 'var(--font-booton)', color: fontColor }}
         >
           anumi
@@ -117,7 +110,7 @@ export default function BookingFormPage() {
 
       <div className="relative z-10 mx-auto flex min-h-[100dvh] max-w-[1400px] flex-col items-center px-6 pt-24 pb-12 md:pt-32">
         <div className="w-full max-w-lg">
-          <p className="text-lg leading-relaxed opacity-90" style={{ color: fontColor }}>
+          <p className="text-lg leading-relaxed" style={{ color: fontColor }}>
             You&apos;re booking: <strong>{session.name}</strong> – {session.day}, {session.time} IST
             <br />
             Led by {session.practitioner}
@@ -125,7 +118,7 @@ export default function BookingFormPage() {
 
           <form onSubmit={handleSubmit} className="mt-10 flex flex-col gap-6">
             <div>
-              <label htmlFor="name" className="mb-2 block text-sm font-medium opacity-90" style={{ color: fontColor }}>
+              <label htmlFor="name" className="mb-2 block text-sm font-medium" style={{ color: fontColor }}>
                 Name
               </label>
               <input
@@ -148,7 +141,7 @@ export default function BookingFormPage() {
             </div>
 
             <div>
-              <label htmlFor="email" className="mb-2 block text-sm font-medium opacity-90" style={{ color: fontColor }}>
+              <label htmlFor="email" className="mb-2 block text-sm font-medium" style={{ color: fontColor }}>
                 Email
               </label>
               <input
@@ -171,7 +164,7 @@ export default function BookingFormPage() {
             </div>
 
             <div>
-              <label htmlFor="phone" className="mb-2 block text-sm font-medium opacity-90" style={{ color: fontColor }}>
+              <label htmlFor="phone" className="mb-2 block text-sm font-medium" style={{ color: fontColor }}>
                 Phone / WhatsApp
               </label>
               <input
@@ -200,7 +193,7 @@ export default function BookingFormPage() {
                 onChange={(e) => setAddToCommunityWhatsapp(e.target.checked)}
                 className="h-4 w-4 rounded border-white/20 bg-white/10 text-[#ff6e40] focus:ring-[#ff6e40]"
               />
-              <span className="text-sm opacity-90" style={{ color: fontColor }}>
+              <span className="text-sm" style={{ color: fontColor }}>
                 Add me to the Anumi community WhatsApp channel
               </span>
             </label>
@@ -215,7 +208,7 @@ export default function BookingFormPage() {
             </button>
           </form>
 
-          <Link href="/book" className="mt-6 inline-block text-sm opacity-80 hover:opacity-100" style={{ color: fontColor }}>
+          <Link href="/book" className="mt-6 inline-block text-sm hover:opacity-80" style={{ color: fontColor }}>
             ← Back to sessions
           </Link>
         </div>
