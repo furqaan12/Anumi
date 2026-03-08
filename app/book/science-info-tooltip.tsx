@@ -73,9 +73,11 @@ export function ScienceInfoTooltip({ explanation, researchTitle, researchUrl, tr
           />
           <div
             role="tooltip"
-            className="science-tooltip-fade absolute right-0 top-full z-50 mt-2 w-[320px] rounded-lg border border-white/10 p-6 shadow-lg sm:right-0 sm:top-auto sm:bottom-full sm:mb-2 sm:mt-0"
-            style={{ backgroundColor: '#0d0d0d' }}
+            className="science-tooltip-fade absolute right-0 top-full z-50 mt-2 w-[320px] overflow-hidden rounded-lg bg-cover bg-center p-6 shadow-lg sm:right-0 sm:top-auto sm:bottom-full sm:mb-2 sm:mt-0"
+            style={{ backgroundImage: 'url(/sec1.jpg)' }}
           >
+            <div className="absolute inset-0 bg-black/30" aria-hidden />
+            <div className="relative z-10">
             <p className="whitespace-pre-line text-sm leading-relaxed" style={{ color: fontColor }}>
               {explanation}
             </p>
@@ -93,6 +95,7 @@ export function ScienceInfoTooltip({ explanation, researchTitle, researchUrl, tr
                 </a>
               </p>
             )}
+            </div>
           </div>
         </>
       )}
