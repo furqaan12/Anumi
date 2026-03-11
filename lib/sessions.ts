@@ -23,7 +23,7 @@ export const SESSIONS: Session[] = [
   {
     id: '2',
     name: 'Stress Relief Session',
-    practitioner: 'Tushuma',
+    practitioner: 'Tushima',
     day: 'Wednesday',
     time: '8:00pm',
     description: 'Gentle practices to release stress and sleep better',

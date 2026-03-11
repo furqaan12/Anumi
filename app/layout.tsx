@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
-import { Cabin, Nunito } from "next/font/google";
+import Script from "next/script";
+import { Cabin, Noto_Sans, Noto_Sans_Kannada, Noto_Sans_Tamil, Nunito } from "next/font/google";
 import localFont from "next/font/local";
 
 import "./globals.css";
+import { RejectionHandler } from "./rejection-handler";
 
 const nunito = Nunito({
   variable: "--font-nunito",
@@ -30,6 +32,24 @@ const booton = localFont({
   variable: "--font-booton",
 });
 
+const notoSans = Noto_Sans({
+  variable: "--font-noto-sans",
+  subsets: ["latin", "devanagari", "arabic"],
+  weight: ["400", "500", "600", "700"],
+});
+
+const notoSansKannada = Noto_Sans_Kannada({
+  variable: "--font-noto-sans-kannada",
+  subsets: ["kannada"],
+  weight: ["400", "500", "600", "700"],
+});
+
+const notoSansTamil = Noto_Sans_Tamil({
+  variable: "--font-noto-sans-tamil",
+  subsets: ["tamil"],
+  weight: ["400", "500", "600", "700"],
+});
+
 export const metadata: Metadata = {
   title: "Anumi | Where Modern India Slows Down",
   description: "Anumi is a space to pause, reset, catch your breath. For people on the go, or for anyone who needs a break. Live online breathwork and meditation sessions. Science-based tools for modern life.",
@@ -52,11 +72,27 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth" suppressHydrationWarning>
+      <Script
+        id="suppress-fetch-rejection"
+        strategy="beforeInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `
+            window.addEventListener('unhandledrejection', function(e) {
+              var r = e.reason;
+              var msg = r && (r.message || String(r));
+              if (msg === 'Failed to fetch' || (r && r.name === 'TypeError')) {
+                e.preventDefault();
+                e.stopPropagation();
+              }
+            }, true);
+          `,
+        }}
+      />
       <body
-        className={`${headingFont.variable} ${nunito.variable} ${vonique.variable} ${gtAmerica.variable} ${booton.variable} antialiased`}
+        className={`${headingFont.variable} ${nunito.variable} ${vonique.variable} ${gtAmerica.variable} ${booton.variable} ${notoSans.variable} ${notoSansKannada.variable} ${notoSansTamil.variable} antialiased`}
         suppressHydrationWarning
       >
-        {children}
+        <RejectionHandler>{children}</RejectionHandler>
       </body>
     </html>
   );

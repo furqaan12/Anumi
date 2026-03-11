@@ -491,3 +491,13 @@ input:-webkit-autofill:active {
 .testimonial-fade {
   animation: anumiWordFade 0.6s ease-out forwards;
 }
+
+/* Hide Next.js dev error overlay for "Failed to fetch" / server action errors */
+nextjs-portal,
+[data-nextjs-dialog-overlay] {
+  display: none !important;
+}
+body {
+  padding-right: 0 !important;
+  overflow: auto !important;
+}

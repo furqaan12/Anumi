@@ -151,7 +151,13 @@ export default function BookPage() {
               style={{ color: fontColor }}
             >
               Welcome to{' '}
-              <span key={anumiWordIndex} className="inline-block min-w-[1.2em] anumi-word-fade">
+              <span
+                key={anumiWordIndex}
+                className="inline-block min-w-[1.2em] anumi-word-fade"
+                style={{
+                  fontFamily: 'var(--font-noto-sans), var(--font-noto-sans-kannada), var(--font-noto-sans-tamil), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+                }}
+              >
                 {ANUMI_WORDS[anumiWordIndex]}
               </span>
             </h1>
@@ -278,82 +284,90 @@ export default function BookPage() {
           </div>
 
           {showCommunityForm && !communitySubmitted && (
-            <div className="mx-auto max-w-md px-6 py-12">
-              <h3 className="text-2xl font-medium tracking-tight md:text-3xl" style={{ color: fontColor }}>
-                Join the community
-              </h3>
-              <form onSubmit={handleCommunitySubmit} className="mt-8 flex flex-col gap-5">
-                <div>
-                  <label htmlFor="community-name" className="mb-2 block text-sm opacity-90" style={{ color: fontColor }}>
-                    Name
-                  </label>
-                  <input
-                    id="community-name"
-                    type="text"
-                    value={communityName}
-                    onChange={(e) => setCommunityName(e.target.value)}
-                    required
-                    className="w-full rounded-full border border-white/20 bg-white/10 px-6 py-4 text-white placeholder:text-white/50 focus:border-[#ff6e40] focus:bg-white/20 focus:outline-none transition-all"
+            <div className="relative min-h-[100dvh] w-full">
+              <div className="pointer-events-none absolute inset-0 z-0 bg-cover bg-center bg-no-repeat" style={{ backgroundImage: 'url(/wowblue.jpg)' }} />
+              <div className="pointer-events-none absolute inset-0 z-0 bg-black/30" aria-hidden />
+              <div className="relative z-10 mx-auto max-w-md px-6 py-12">
+                <h3 className="text-2xl font-medium tracking-tight md:text-3xl" style={{ color: fontColor }}>
+                  Join the community
+                </h3>
+                <form onSubmit={handleCommunitySubmit} className="mt-8 flex flex-col gap-5">
+                  <div>
+                    <label htmlFor="community-name" className="mb-2 block text-sm opacity-90" style={{ color: fontColor }}>
+                      Name
+                    </label>
+                    <input
+                      id="community-name"
+                      type="text"
+                      value={communityName}
+                      onChange={(e) => setCommunityName(e.target.value)}
+                      required
+                      className="w-full rounded-full border border-white/20 bg-white/10 px-6 py-4 text-white placeholder:text-white/50 focus:border-[#ff6e40] focus:bg-white/20 focus:outline-none transition-all"
+                      style={{ color: fontColor }}
+                      placeholder="Your name"
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="community-whatsapp" className="mb-2 block text-sm opacity-90" style={{ color: fontColor }}>
+                      WhatsApp
+                    </label>
+                    <input
+                      id="community-whatsapp"
+                      type="tel"
+                      value={communityWhatsapp}
+                      onChange={(e) => setCommunityWhatsapp(e.target.value)}
+                      required
+                      className="w-full rounded-full border border-white/20 bg-white/10 px-6 py-4 text-white placeholder:text-white/50 focus:border-[#ff6e40] focus:bg-white/20 focus:outline-none transition-all"
+                      style={{ color: fontColor }}
+                      placeholder="+91 98765 43210"
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="community-share" className="mb-2 block text-sm opacity-90" style={{ color: fontColor }}>
+                      Share anything about yourself
+                    </label>
+                    <textarea
+                      id="community-share"
+                      value={communityShare}
+                      onChange={(e) => setCommunityShare(e.target.value)}
+                      rows={4}
+                      className="w-full rounded-lg border border-white/20 bg-white/10 px-6 py-4 text-white placeholder:text-white/50 focus:border-[#ff6e40] focus:bg-white/20 focus:outline-none transition-all resize-none"
+                      style={{ color: fontColor }}
+                      placeholder="A few words about you..."
+                    />
+                  </div>
+                  <button
+                    type="submit"
+                    className="mt-4 w-full rounded-full border border-white/10 bg-white/10 px-6 py-4 text-sm font-bold tracking-widest transition-all duration-300 hover:bg-white/20"
                     style={{ color: fontColor }}
-                    placeholder="Your name"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="community-whatsapp" className="mb-2 block text-sm opacity-90" style={{ color: fontColor }}>
-                    WhatsApp
-                  </label>
-                  <input
-                    id="community-whatsapp"
-                    type="tel"
-                    value={communityWhatsapp}
-                    onChange={(e) => setCommunityWhatsapp(e.target.value)}
-                    required
-                    className="w-full rounded-full border border-white/20 bg-white/10 px-6 py-4 text-white placeholder:text-white/50 focus:border-[#ff6e40] focus:bg-white/20 focus:outline-none transition-all"
-                    style={{ color: fontColor }}
-                    placeholder="+91 98765 43210"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="community-share" className="mb-2 block text-sm opacity-90" style={{ color: fontColor }}>
-                    Share anything about yourself
-                  </label>
-                  <textarea
-                    id="community-share"
-                    value={communityShare}
-                    onChange={(e) => setCommunityShare(e.target.value)}
-                    rows={4}
-                    className="w-full rounded-lg border border-white/20 bg-white/10 px-6 py-4 text-white placeholder:text-white/50 focus:border-[#ff6e40] focus:bg-white/20 focus:outline-none transition-all resize-none"
-                    style={{ color: fontColor }}
-                    placeholder="A few words about you..."
-                  />
-                </div>
-                <button
-                  type="submit"
-                  className="mt-4 w-full rounded-full border border-white/10 bg-white/10 px-6 py-4 text-sm font-bold tracking-widest transition-all duration-300 hover:bg-white/20"
-                  style={{ color: fontColor }}
-                >
-                  Join community
-                </button>
-              </form>
+                  >
+                    Join community
+                  </button>
+                </form>
+              </div>
             </div>
           )}
 
           {communitySubmitted && (
-            <div className="mx-auto max-w-md px-6 py-12 text-center">
-              <p className="text-xl md:text-2xl" style={{ color: fontColor }}>
-                You&apos;ll be added in soon!
-              </p>
-              <button
-                type="button"
-                onClick={() => {
-                  setCommunitySubmitted(false);
-                  setShowCommunityForm(false);
-                }}
-                className="mt-8 text-sm opacity-80 transition-opacity hover:opacity-100"
-                style={{ color: fontColor, fontFamily: 'var(--font-mabry-pro)' }}
-              >
-                ← Back
-              </button>
+            <div className="relative min-h-[100dvh] w-full">
+              <div className="pointer-events-none absolute inset-0 z-0 bg-cover bg-center bg-no-repeat" style={{ backgroundImage: 'url(/wowblue.jpg)' }} />
+              <div className="pointer-events-none absolute inset-0 z-0 bg-black/30" aria-hidden />
+              <div className="relative z-10 mx-auto max-w-md px-6 py-12 text-center">
+                <p className="text-xl md:text-2xl" style={{ color: fontColor }}>
+                  You&apos;ll be added in soon!
+                </p>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setCommunitySubmitted(false);
+                    setShowCommunityForm(false);
+                  }}
+                  className="mt-8 text-sm opacity-80 transition-opacity hover:opacity-100"
+                  style={{ color: fontColor, fontFamily: 'var(--font-mabry-pro)' }}
+                >
+                  ← Back
+                </button>
+              </div>
             </div>
           )}
         </section>

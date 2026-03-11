@@ -44,6 +44,8 @@ export default function ConfirmationPage() {
   if (booking === null) {
     return (
       <div className={`relative min-h-[100dvh] w-full overflow-x-hidden bg-black ${mabryPro.className}`}>
+        <div className="pointer-events-none absolute inset-0 z-0 bg-cover bg-center bg-no-repeat" style={{ backgroundImage: 'url(/wowblue.jpg)' }} />
+        <div className="pointer-events-none absolute inset-0 z-0 bg-black/30" aria-hidden />
         <div className="relative z-10 mx-auto flex min-h-[100dvh] max-w-[1400px] flex-col items-center justify-center px-6 pt-24 pb-12">
           <p className="text-xl" style={{ color: fontColor }}>
             Booking not found.
@@ -62,6 +64,8 @@ export default function ConfirmationPage() {
 
   return (
     <div className={`relative min-h-[100dvh] w-full overflow-x-hidden bg-black ${mabryPro.className}`}>
+      <div className="pointer-events-none absolute inset-0 z-0 bg-cover bg-center bg-no-repeat" style={{ backgroundImage: 'url(/wowblue.jpg)' }} />
+      <div className="pointer-events-none absolute inset-0 z-0 bg-black/30" aria-hidden />
       <div className="absolute left-0 top-8 z-20 flex w-full justify-center">
         <Link
           href="/"
@@ -97,8 +101,8 @@ export default function ConfirmationPage() {
               href={booking.zoomLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex min-h-[44px] items-center break-all text-lg font-medium underline decoration-[#ff6e40] underline-offset-2 transition-colors hover:decoration-[#f89b3f]"
-              style={{ color: '#ff6e40' }}
+              className="inline-flex min-h-[44px] items-center break-all text-lg font-medium underline decoration-[#7b3d73] underline-offset-2 transition-colors hover:decoration-[#9b5d93]"
+              style={{ color: '#7b3d73' }}
             >
               {booking.zoomLink}
             </a>

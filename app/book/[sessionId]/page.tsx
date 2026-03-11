@@ -86,6 +86,8 @@ export default function BookingFormPage() {
   if (!session) {
     return (
       <div className={`relative min-h-[100dvh] w-full overflow-x-hidden bg-black ${mabryPro.className}`}>
+        <div className="pointer-events-none absolute inset-0 z-0 bg-cover bg-center bg-no-repeat" style={{ backgroundImage: 'url(/wowblue.jpg)' }} />
+        <div className="pointer-events-none absolute inset-0 z-0 bg-black/30" aria-hidden />
         <div className="relative z-10 mx-auto flex min-h-[100dvh] max-w-[1400px] flex-col items-center justify-center px-6 pt-24 pb-12">
           <p className="text-xl text-[#F9EAD1]">Session not found.</p>
           <Link href="/book" className="mt-4 rounded-full border border-white/10 bg-white/10 px-6 py-4 text-sm font-bold tracking-widest" style={{ color: fontColor }}>
@@ -98,6 +100,8 @@ export default function BookingFormPage() {
 
   return (
     <div className={`relative min-h-[100dvh] w-full overflow-x-hidden bg-black ${mabryPro.className}`}>
+      <div className="pointer-events-none absolute inset-0 z-0 bg-cover bg-center bg-no-repeat" style={{ backgroundImage: 'url(/wowblue.jpg)' }} />
+      <div className="pointer-events-none absolute inset-0 z-0 bg-black/30" aria-hidden />
       <div className="absolute left-0 top-8 z-20 flex w-full justify-center">
         <Link
           href="/"

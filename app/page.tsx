@@ -1,8 +1,7 @@
 'use client';
 
-import { useState, useTransition, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { joinWaitlist } from './actions/subscribe';
 import localFont from 'next/font/local';
 
 const PREFILL_EMAIL_KEY = 'anumi_prefill_email';
@@ -42,7 +41,7 @@ export default function Home() {
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
   const [isError, setIsError] = useState(false);
-  const [isPending, startTransition] = useTransition();
+  const [isPending, setIsPending] = useState(false);
   const [testimonialIndex, setTestimonialIndex] = useState(0);
 
   const fontColor = '#F9EAD1';
@@ -54,28 +53,43 @@ export default function Home() {
     return () => clearInterval(t);
   }, []);
 
+  // Preload booking page background so it's cached before navigation (avoids black flash)
+  useEffect(() => {
+    const img = new Image();
+    img.src = '/sec1.jpg';
+  }, []);
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setMessage('');
     setIsError(false);
+    setIsPending(true);
 
-    startTransition(async () => {
-      const formData = new FormData();
-      formData.append('email', email);
-
-      const result = await joinWaitlist(formData);
-
-      if (result.error) {
-        setMessage(result.error);
-        setIsError(true);
-      } else {
+    fetch('/api/waitlist', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email }),
+    })
+      .then(async (res) => {
+        const data = await res.json().catch(() => ({}));
+        if (!res.ok) {
+          setMessage(data?.error || 'Something went wrong. Please try again.');
+          setIsError(true);
+          return;
+        }
         if (typeof window !== 'undefined') window.localStorage.setItem(PREFILL_EMAIL_KEY, email);
         setEmail('');
         setMessage('');
         setIsError(false);
         router.push('/book');
-      }
-    });
+      })
+      .catch((err: unknown) => {
+        const msg = err instanceof Error ? err.message : String(err);
+        const isNetwork = msg === 'Failed to fetch' || err instanceof TypeError;
+        setMessage(isNetwork ? 'Connection issue. Please check your network and try again.' : 'Something went wrong. Please try again.');
+        setIsError(true);
+      })
+      .finally(() => setIsPending(false));
   };
 
   return (
