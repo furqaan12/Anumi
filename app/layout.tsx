@@ -72,6 +72,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth" suppressHydrationWarning>
+      <head>
+        {/* Preload critical background images so they're fetched immediately and don't cause a black flash */}
+        <link rel="preload" href="/wow.jpg" as="image" />
+        <link rel="preload" href="/sec1.jpg" as="image" />
+        <link rel="preload" href="/wowblue.jpg" as="image" />
+      </head>
       <Script
         id="suppress-fetch-rejection"
         strategy="beforeInteractive"

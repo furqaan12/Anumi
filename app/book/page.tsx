@@ -94,6 +94,12 @@ export default function BookPage() {
     return () => clearInterval(t);
   }, []);
 
+  // Preload booking form background so it's ready when user clicks "Book this session"
+  useEffect(() => {
+    const img = new Image();
+    img.src = '/wowblue.jpg';
+  }, []);
+
   useEffect(() => {
     const whySection = whyAnumiRef.current;
     const commSection = communityRef.current;
